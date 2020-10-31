@@ -19,7 +19,7 @@ $ npm install -g pskop
 $ pskop COMMAND
 running command...
 $ pskop (-v|--version|version)
-pskop/0.0.0 darwin-x64 node-v14.12.0
+pskop/0.0.1 darwin-x64 node-v14.12.0
 $ pskop --help [COMMAND]
 USAGE
   $ pskop COMMAND
@@ -28,28 +28,37 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`pskop hello [FILE]`](#pskop-hello-file)
+* [`pskop add`](#pskop-add)
 * [`pskop help [COMMAND]`](#pskop-help-command)
+* [`pskop resolve`](#pskop-resolve)
+* [`pskop show`](#pskop-show)
 
-## `pskop hello [FILE]`
+## `pskop add`
 
-describe the command here
+Add an ip/domain/urls
 
 ```
 USAGE
-  $ pskop hello [FILE]
+  $ pskop add
 
 OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  -d, --domain=domain  Add an domain
+  -h, --help           show CLI help
+  -i, --ip=ip          Add an IP
+  -s, --scope          Tag entries as scoped
 
-EXAMPLE
-  $ pskop hello
-  hello world from ./src/add.ts!
+ALIASES
+  $ pskop a
+  $ pskop update
+  $ pskop patch
+  $ pskop modify
+
+EXAMPLES
+  $ pskop add -i 42.42.42.42
+  $ pskop add -d www.example.com
 ```
 
-_See code: [src/commands/add.ts](https://github.com/louisvenne/pskop/blob/v0.0.0/src/commands/hello.ts)_
+_See code: [src/commands/add.ts](https://github.com/louisvenne/pskop/blob/v0.0.1/src/commands/add.ts)_
 
 ## `pskop help [COMMAND]`
 
@@ -67,4 +76,44 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.0/src/commands/help.ts)_
+
+## `pskop resolve`
+
+Show scope
+
+```
+USAGE
+  $ pskop resolve
+
+OPTIONS
+  -h, --help  show CLI help
+
+ALIASES
+  $ pskop r
+```
+
+_See code: [src/commands/resolve.ts](https://github.com/louisvenne/pskop/blob/v0.0.1/src/commands/resolve.ts)_
+
+## `pskop show`
+
+Show scope
+
+```
+USAGE
+  $ pskop show
+
+OPTIONS
+  -c, --columns=columns  only show provided columns (comma-separated)
+  -f, --filter=filter    filter property by partial string matching, ex: name=foo
+  -h, --help             show CLI help
+  -o, --output=raw       output in a more machine friendly format
+  -s, --scoped           show only scoped rows
+  -x, --extended         show extra columns
+  --sort=sort            property to sort by (prepend '-' for descending)
+
+ALIASES
+  $ pskop s
+```
+
+_See code: [src/commands/show.ts](https://github.com/louisvenne/pskop/blob/v0.0.1/src/commands/show.ts)_
 <!-- commandsstop -->
