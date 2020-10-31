@@ -1,0 +1,79 @@
+{
+  "name": "pskop",
+  "description": "Tool to manage pentest scope",
+  "version": "0.0.0",
+  "author": "Louis VENNE @louisvenne",
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "posttest": "eslint . --ext .ts --config .eslintrc",
+    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "test": "echo NO TESTS",
+    "version": "oclif-dev readme && git add README.md",
+    "lint": "eslint src --fix --ext .js,.ts,.tsx"
+  },
+  "bin": {
+    "pskop": "./bin/run"
+  },
+  "bugs": "https://github.com/louisvenne/pskop/issues",
+  "dependencies": {
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "@oclif/plugin-help": "^3",
+    "@types/config": "^0.0.36",
+    "chalk": "^4.1.0",
+    "check-ip": "^1.1.1",
+    "cli-table3": "^0.6.0",
+    "cli-ux": "^5.5.0",
+    "config": "^3.3.2",
+    "is-valid-domain": "^0.0.17",
+    "pg": "^8.4.2",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.5",
+    "sqlite3": "^5.0.0",
+    "tslib": "^1"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1",
+    "@types/node": "^10",
+    "@typescript-eslint/eslint-plugin": "^4.6.0",
+    "@typescript-eslint/parser": "^4.6.0",
+    "eslint": "^7.12.1",
+    "eslint-config-oclif": "^3.1",
+    "eslint-config-oclif-typescript": "^0.1",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-config-standard": "^15.0.1",
+    "eslint-plugin-arca": "^0.9.5",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.2",
+    "globby": "^10",
+    "prettier": "^2.1.2",
+    "ts-node": "^8",
+    "typescript": "^3.3"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/lib",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "homepage": "https://github.com/louisvenne/pskop",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "oclif": {
+    "commands": "./lib/commands",
+    "bin": "pskop",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "louisvenne/pskop",
+  "types": "lib/index.d.ts"
+}

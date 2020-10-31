@@ -1,0 +1,60 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+        "prettier",
+        "plugin:@typescript-eslint/recommended",
+        "standard"
+    ],
+    "parserOptions": {
+        "project": "./tsconfig.json"
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "arca"
+    ],
+    "globals": {
+        "__DEV__": false,
+        "jasmine": false,
+        "beforeAll": false,
+        "afterAll": false,
+        "beforeEach": false,
+        "afterEach": false,
+        "test": false,
+        "expect": false,
+        "describe": false,
+        "jest": false,
+        "it": false
+    },
+    "rules": {
+        "arca/curly": "off",
+        "arca/import-align": "warn",
+        "arca/import-ordering": "warn",
+        "arca/melted-constructs": "warn",
+        "arca/newline-after-import-section": "warn",
+        "arca/no-default-export": "off",
+        "no-multi-spaces": [
+            "error",
+            {
+                "exceptions": {
+                    "ImportDeclaration": true
+                }
+            }
+        ],
+        "no-multiple-empty-lines": "off",
+        "semi": [
+            "error",
+            "always"
+        ],
+        "import/newline-after-import": [
+            "error",
+            {
+                "count": 2
+            }
+        ],
+        "padded-blocks": "off",
+        "indent": ["warn", 4],
+        "no-unused-vars": "warn",
+        "space-before-function-paren": "off",
+        "camelcase": "off",
+    }
+}
