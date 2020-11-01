@@ -30,12 +30,13 @@ USAGE
 <!-- commands -->
 * [`pskop add`](#pskop-add)
 * [`pskop help [COMMAND]`](#pskop-help-command)
+* [`pskop import`](#pskop-import)
 * [`pskop resolve`](#pskop-resolve)
 * [`pskop show`](#pskop-show)
 
 ## `pskop add`
 
-Add an ip/domain/urls
+Add/update a domain and/or IP to the database.
 
 ```
 USAGE
@@ -77,9 +78,32 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.0/src/commands/help.ts)_
 
+## `pskop import`
+
+Import IP and/or domains from file
+
+```
+USAGE
+  $ pskop import
+
+OPTIONS
+  -h, --help  show CLI help
+
+ALIASES
+  $ pskop i
+
+EXAMPLES
+  $ pskop import scope.txt
+  $ pskop import domains/*
+  $ pskop import sublister.output.txt
+  $ pskop import scans/*
+```
+
+_See code: [src/commands/import.ts](https://github.com/louisvenne/pskop/blob/v0.0.1/src/commands/import.ts)_
+
 ## `pskop resolve`
 
-Show scope
+Resolves all domains to IP and reverse them afterwards
 
 ```
 USAGE
@@ -96,20 +120,20 @@ _See code: [src/commands/resolve.ts](https://github.com/louisvenne/pskop/blob/v0
 
 ## `pskop show`
 
-Show scope
+Display scope in a beautiful ASCII table
 
 ```
 USAGE
   $ pskop show
 
 OPTIONS
-  -c, --columns=columns  only show provided columns (comma-separated)
-  -f, --filter=filter    filter property by partial string matching, ex: name=foo
+  -c, --columns=columns  Only show provided columns (comma-separated)
+  -f, --filter=filter    Filter property by partial string matching, ex: name=foo
   -h, --help             show CLI help
-  -o, --output=raw       output in a more machine friendly format
-  -s, --scoped           show only scoped rows
-  -x, --extended         show extra columns
-  --sort=sort            property to sort by (prepend '-' for descending)
+  -o, --output=raw       Output in a more machine friendly format (for 'raw' format, you must select only one column)
+  -s, --scoped           Show only scoped rows
+  -x, --extended         Show extra columns
+  --sort=sort            Property to sort by (prepend '-' for descending)
 
 ALIASES
   $ pskop s
