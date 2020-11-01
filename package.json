@@ -1,6 +1,6 @@
 {
     "name": "pskop",
-    "description": "Tool to manage pentest scope",
+    "description": "Tool to mange your scope efficiently in pentest.",
     "version": "0.0.2",
     "author": "Louis VENNE @louisvenne",
     "scripts": {
