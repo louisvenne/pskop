@@ -5,7 +5,7 @@
 
 import  { Command, flags }          from '@oclif/command';
 import  * as chalk                  from 'chalk';
-import  * as checkIP                from 'check-ip';
+import  * as isValidIp              from 'is-ip';
 import  * as isValidDomain          from 'is-valid-domain';
 
 import  { Domain }                  from '../database/models/domain';
@@ -44,16 +44,15 @@ class Add extends Command {
 
     static async addIP(ip: string, domain?: Domain, scope?: boolean) : Promise<IP | undefined> {
         try {
-            if (!checkIP(ip).isValid) throw 'The IP address provided is not valid.';
-            if (domain && !isValidDomain(domain?.name.toString())) throw 'The domain provided is not valid.';
+            if (!isValidIp(ip)) throw new Error('The IP address provided is not valid.');
+            if (domain && !isValidDomain(domain?.name.toString())) throw new Error('The domain provided is not valid.');
 
             const [elem, created] = await IP.findOrCreate({
                 where: { addr: ip },
                 defaults: { addr: ip, scoped: !!scope }
             });
             if (domain) await elem.addDomain(domain);
-            console.debug(scope);
-            if (scope !== undefined) elem.update({ scoped: scope });
+            if (scope !== undefined) await elem.update({ scoped: scope });
 
             if (created) console.log(chalk.green(`[+] IP '${elem.addr}' have been successfully added !`));
             else console.warn(chalk.yellowBright(`[+] IP '${elem.addr}' already exist on db.`));
@@ -67,15 +66,15 @@ class Add extends Command {
 
     static async addDomain(domain: string, ip?: IP, scope?: boolean) : Promise<Domain | undefined> {
         try {
-            if (!isValidDomain(domain)) throw 'The domain provided is not valid.';
-            if (ip && !checkIP(ip?.addr.toString()).isValid) throw 'The IP address provided is not valid.';
+            if (!isValidDomain(domain)) throw new Error('The domain provided is not valid.');
+            if (ip && !isValidIp(ip?.addr.toString())) throw new Error('The IP address provided is not valid.');
 
             const [elem, created] = await Domain.findOrCreate({
                 where: { name: domain },
                 defaults: { name: domain, scoped: !!scope }
             });
             if (ip) await elem.addIp(ip);
-            if (scope !== undefined) elem.update({ scoped: scope });
+            if (scope !== undefined) await elem.update({ scoped: scope });
 
             if (created) console.log(chalk.green(`[+] Domain '${elem.name}' have been successfully added !`));
             else console.warn(chalk.yellowBright(`[+] Domain '${elem.name}' already exist on db.`));

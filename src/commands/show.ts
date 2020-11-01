@@ -5,14 +5,22 @@
 
 import  { Command, flags }          from '@oclif/command';
 import  * as Table                  from 'cli-table3';
-import  { table }                   from 'cli-ux/lib/styled/table';
 import  { cli }                     from 'cli-ux';
 
 import  { Domain }                  from '../database/models/domain';
 import  { IP }                      from '../database/models/ip';
 import  { database }                from '../database';
 
-import IFlags = table.IFlags;
+
+interface IFlags {
+    help?: void,
+    columns?: string | undefined,
+    sort?: string,
+    scoped?: boolean,
+    filter?: string | undefined,
+    extended?: boolean,
+    output?: string,
+}
 
 
 interface Row {
