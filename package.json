@@ -1,7 +1,7 @@
 {
     "name": "pskop",
     "description": "Tool to manage pentest scope",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "author": "Louis VENNE @louisvenne",
     "scripts": {
         "postpack": "rm -f oclif.manifest.json",
