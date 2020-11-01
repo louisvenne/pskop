@@ -10,6 +10,7 @@ config/local.ts
 app/config/env.*.js
 !env.js
 data/
+sandbox/
 
 
 ###############################

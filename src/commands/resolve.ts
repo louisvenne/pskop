@@ -4,7 +4,7 @@
 
 
 import  { Command, flags }                         from '@oclif/command';
-import * as chalk                                  from 'chalk';
+import  * as chalk                                 from 'chalk';
 import  { promises as dns }                        from 'dns';
 
 import  { Domain }                                 from '../database/models/domain';
