@@ -18,8 +18,7 @@ class Resolve extends Command {
 
     static aliases = ['r'];
 
-    static description = 'Show scope';
-
+    static description = 'Resolves all domains to IP and reverse them afterwards';
 
     static flags = {
         help: flags.help({ char: 'h' })

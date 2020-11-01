@@ -25,20 +25,20 @@ class Show extends Command {
 
     static aliases = ['s'];
 
-    static description = 'Show scope';
+    static description = 'Display scope in a beautiful ASCII table';
 
 
     static flags = {
         help: flags.help({ char: 'h' }),
-        columns: flags.string({ char: 'c', exclusive: ['additional'], description: 'only show provided columns (comma-separated)' }),
-        sort: flags.string({ description: "property to sort by (prepend '-' for descending)" }),
-        scoped: flags.boolean({ char: 's', description: 'show only scoped rows', default: false }),
-        filter: flags.string({ char: 'f', description: 'filter property by partial string matching, ex: name=foo' }),
-        extended: flags.boolean({ char: 'x', description: 'show extra columns' }),
+        columns: flags.string({ char: 'c', exclusive: ['additional'], description: 'Only show provided columns (comma-separated)' }),
+        sort: flags.string({ description: "Property to sort by (prepend '-' for descending)" }),
+        scoped: flags.boolean({ char: 's', description: 'Show only scoped rows', default: false }),
+        filter: flags.string({ char: 'f', description: 'Filter property by partial string matching, ex: name=foo' }),
+        extended: flags.boolean({ char: 'x', description: 'Show extra columns' }),
         output: flags.option({
             parse: input => input,
             char: 'o',
-            description: 'output in a more machine friendly format',
+            description: "Output in a more machine friendly format (for 'raw' format, you must select only one column)",
             options: ['raw'],
             multiple: false,
             dependsOn: ['columns']

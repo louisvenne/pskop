@@ -17,7 +17,7 @@ class Add extends Command {
 
     static aliases = ['a', 'update', 'patch', 'modify']
 
-    static description = 'Add an ip/domain/urls';
+    static description = 'Add/update a domain and/or IP to the database.';
 
     static examples = [
         '$ pskop add -i 42.42.42.42',
