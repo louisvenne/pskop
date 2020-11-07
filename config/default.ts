@@ -6,7 +6,7 @@
 const config = {
   database: {
     dialect: 'sqlite',
-    storage: 'data/database.sqlite',
+    storage: `${__dirname}/../data/database.sqlite`,
     logging: false,
   }
 };
