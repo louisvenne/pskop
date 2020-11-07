@@ -87,8 +87,7 @@ USAGE
   $ pskop import
 
 OPTIONS
-  -h, --help    show CLI help
-  -s, --scoped
+  -h, --help  show CLI help
 
 ALIASES
   $ pskop i
