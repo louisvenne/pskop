@@ -3,17 +3,16 @@
  */
 
 
-import  { Command, flags }                          from '@oclif/command';
-import  * as chalk                                  from 'chalk';
-import  * as fs                                     from 'fs';
-import  { promises as pfs }                         from 'fs';
-import  * as isValidIP                              from 'is-ip';
-import  * as isValidDomain                          from 'is-valid-domain';
-import  * as readline                               from 'readline';
+import  { Command, flags }                from '@oclif/command';
+import  chalk                             from 'chalk';
+import  fs, { promises as pfs }           from 'fs';
+import  isValidIP                         from 'is-ip';
+import  isValidDomain                     from 'is-valid-domain';
+import  readline, { Interface }           from 'readline';
 
-import  { database }                                from '../database';
+import  { database }                      from '../database';
 
-import  Add                                         from './add';
+import  Add                               from './add';
 
 
 enum FileType {
@@ -71,7 +70,7 @@ class Import extends Command {
             process.stdout.write('\n');
 
         } catch (err) {
-            console.error(chalk.red(err));
+            console.error(chalk.red(`[-] ${err.message}`));
         }
     }
 
@@ -84,6 +83,7 @@ class Import extends Command {
         });
 
         let firstline = true;
+        // @ts-ignore
         for await (const line of lines) {
             if (firstline && isValidIP(line)) return FileType.IP;
             if (firstline && isValidDomain(line)) return FileType.DOMAIN;
@@ -97,11 +97,12 @@ class Import extends Command {
 
     async importBasicFile(path: string, type: string) : Promise<void> {
         const stream = fs.createReadStream(path);
-        const lines = readline.createInterface({
+        const lines: Interface = readline.createInterface({
             input: stream,
             crlfDelay: Infinity
         });
 
+        // @ts-ignore
         for await (const line of lines) {
             if (type === FileType.DOMAIN) await Add.addDomain(line);
             if (type === FileType.IP) await Add.addIP(line);

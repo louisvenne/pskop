@@ -3,13 +3,15 @@
  */
 
 
-import  { Command, flags }          from '@oclif/command';
-import  * as Table                  from 'cli-table3';
-import  { cli }                     from 'cli-ux';
+import  { Command, flags }            from '@oclif/command';
+import chalk                          from 'chalk';
+import  Table                         from 'cli-table3';
+import  { cli }                       from 'cli-ux';
+import Model, { FindOptions }         from 'sequelize/types/lib/model';
 
-import  { Domain }                  from '../database/models/domain';
-import  { IP }                      from '../database/models/ip';
-import  { database }                from '../database';
+import  { Domain }                    from '../database/models/domain';
+import  { IP }                        from '../database/models/ip';
+import  { database }                  from '../database';
 
 
 interface IFlags {
@@ -69,7 +71,7 @@ class Show extends Command {
 
 
     async retrieveData(flags: IFlags) : Promise<Array<IP>> {
-        const options = {
+        const options : FindOptions<Model['_attributes']> = {
             attributes: ['addr', 'scoped'],
             include: {
                 model: Domain,
@@ -109,13 +111,20 @@ class Show extends Command {
 
 
     outputData(data: [], flags: IFlags) : void {
-        if (flags.output && flags.output === 'raw' && flags.columns.split(',').length === 1) {
-            data.map((d: Row) => {
-                for (const key in d) process.stdout.write(`${d[key]}\n`);
-            });
-            return;
+        try {
+            if (flags.output && flags.output === 'raw') return this.outputToRawList(data, flags);
+            this.outputToASCII(data, flags);
+        } catch (err) {
+            console.error(chalk.red(`[-] ${err.message}`));
         }
-        this.outputToASCII(data, flags);
+    }
+
+
+    outputToRawList(data: [], flags: IFlags) : void {
+        if (!flags.columns || flags.columns.split(',').length !== 1) throw new Error('Only exactly one column must be provided !');
+        data.map((d: Row) => {
+            for (const key in d) process.stdout.write(`${d[key]}\n`);
+        });
     }
 
 

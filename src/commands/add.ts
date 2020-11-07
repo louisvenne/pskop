@@ -4,9 +4,9 @@
 
 
 import  { Command, flags }          from '@oclif/command';
-import  * as chalk                  from 'chalk';
-import  * as isValidIp              from 'is-ip';
-import  * as isValidDomain          from 'is-valid-domain';
+import  chalk                       from 'chalk';
+import  isValidIP                   from 'is-ip';
+import  isValidDomain               from 'is-valid-domain';
 
 import  { Domain }                  from '../database/models/domain';
 import  { IP }                      from '../database/models/ip';
@@ -44,7 +44,7 @@ class Add extends Command {
 
     static async addIP(ip: string, domain?: Domain, scope?: boolean) : Promise<IP | undefined> {
         try {
-            if (!isValidIp(ip)) throw new Error('The IP address provided is not valid.');
+            if (!isValidIP(ip)) throw new Error('The IP address provided is not valid.');
             if (domain && !isValidDomain(domain?.name.toString())) throw new Error('The domain provided is not valid.');
 
             const [elem, created] = await IP.findOrCreate({
@@ -67,7 +67,7 @@ class Add extends Command {
     static async addDomain(domain: string, ip?: IP, scope?: boolean) : Promise<Domain | undefined> {
         try {
             if (!isValidDomain(domain)) throw new Error('The domain provided is not valid.');
-            if (ip && !isValidIp(ip?.addr.toString())) throw new Error('The IP address provided is not valid.');
+            if (ip && !isValidIP(ip?.addr.toString())) throw new Error('The IP address provided is not valid.');
 
             const [elem, created] = await Domain.findOrCreate({
                 where: { name: domain },

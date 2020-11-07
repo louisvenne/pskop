@@ -4,7 +4,7 @@
 
 
 import  chalk                                                                from 'chalk';
-import  * as config                                                          from 'config';
+import  config                                                               from 'config';
 import  { Sequelize }                                                        from 'sequelize';
 
 import  { registerAllModels }                                                from './models';
