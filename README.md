@@ -19,7 +19,7 @@ $ npm install -g pskop
 $ pskop COMMAND
 running command...
 $ pskop (-v|--version|version)
-pskop/0.0.1 darwin-x64 node-v14.12.0
+pskop/0.0.3 darwin-x64 node-v15.0.1
 $ pskop --help [COMMAND]
 USAGE
   $ pskop COMMAND
@@ -59,7 +59,7 @@ EXAMPLES
   $ pskop add -d www.example.com
 ```
 
-_See code: [src/commands/add.ts](https://github.com/louisvenne/pskop/blob/v0.0.1/src/commands/add.ts)_
+_See code: [src/commands/add.ts](https://github.com/louisvenne/pskop/blob/v0.0.3/src/commands/add.ts)_
 
 ## `pskop help [COMMAND]`
 
@@ -87,7 +87,8 @@ USAGE
   $ pskop import
 
 OPTIONS
-  -h, --help  show CLI help
+  -h, --help    show CLI help
+  -s, --scoped
 
 ALIASES
   $ pskop i
@@ -99,7 +100,7 @@ EXAMPLES
   $ pskop import scans/*
 ```
 
-_See code: [src/commands/import.ts](https://github.com/louisvenne/pskop/blob/v0.0.1/src/commands/import.ts)_
+_See code: [src/commands/import.ts](https://github.com/louisvenne/pskop/blob/v0.0.3/src/commands/import.ts)_
 
 ## `pskop resolve`
 
@@ -116,7 +117,7 @@ ALIASES
   $ pskop r
 ```
 
-_See code: [src/commands/resolve.ts](https://github.com/louisvenne/pskop/blob/v0.0.1/src/commands/resolve.ts)_
+_See code: [src/commands/resolve.ts](https://github.com/louisvenne/pskop/blob/v0.0.3/src/commands/resolve.ts)_
 
 ## `pskop show`
 
@@ -139,5 +140,5 @@ ALIASES
   $ pskop s
 ```
 
-_See code: [src/commands/show.ts](https://github.com/louisvenne/pskop/blob/v0.0.1/src/commands/show.ts)_
+_See code: [src/commands/show.ts](https://github.com/louisvenne/pskop/blob/v0.0.3/src/commands/show.ts)_
 <!-- commandsstop -->
